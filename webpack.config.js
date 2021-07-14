@@ -7,10 +7,10 @@ const isProductionMode = process.env.NODE_ENV === "production";
 module.exports = {
   mode: isProductionMode ? "production" : "development",
   devtool: isProductionMode ? "source-map" : "eval-source-map",
-  entry: path.resolve(__dirname, "src", "index.jsx"),
+  entry: path.resolve(__dirname, "src", "index.tsx"),
   output: { path: path.resolve(__dirname, "dist"), filename: "bundle.js" },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   devServer: {
     contentBase: path.resolve(__dirname, "public"),
@@ -25,7 +25,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.(j|t)sx$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
